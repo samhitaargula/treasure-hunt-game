@@ -1,0 +1,74 @@
+.samples div {
+ text-shadow: 0px 1px 0px rgb(204, 204, 204), 0px 2px 0px rgb(201, 201, 201), 0px 3px 0px rgb(187, 187, 187), 0px 4px 0px rgb(185, 185, 185), 0px 5px 0px rgb(170, 170, 170), 0px 6px 1px rgba(0, 0, 0, 0.1), 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.3), 0px 3px 5px rgba(0, 0, 0, 0.2), 0px 5px 10px rgba(0, 0, 0, 0.25), 0px 20px 20px rgba(0, 0, 0, 0.15);
+ color: #FFFFFF;
+ font-family: 'League Gothic',Impact,sans-serif;
+ letter-spacing: 0.02em;
+ text-transform: uppercase;
+ text-align: center;
+ font-size: 2em;
+ width:32%;
+ height:300px; 
+ line-height:285px;
+ float:left;
+ margin:1px;
+}
+
+.background-4 {
+background: rgb(105,155,200);
+background: -moz-radial-gradient(top left, ellipse cover, rgba(105,155,200,1) 0%, rgba(181,197,216,1) 57%);
+ background: -webkit-gradient(radial, top left, 0px, top left, 100%, color-stop(0%,rgba(105,155,200,1)), color-stop(57%,rgba(181,197,216,1)));
+ background: -webkit-radial-gradient(top left, ellipse cover, rgba(105,155,200,1) 0%,rgba(181,197,216,1) 57%);
+ background: -o-radial-gradient(top left, ellipse cover, rgba(105,155,200,1) 0%,rgba(181,197,216,1) 57%);
+ background: -ms-radial-gradient(top left, ellipse cover, rgba(105,155,200,1) 0%,rgba(181,197,216,1) 57%);
+ background: radial-gradient(ellipse at top left, rgba(105,155,200,1) 0%,rgba(181,197,216,1) 57%);
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#699bc8', endColorstr='#b5c5d8',GradientType=1 );
+}
+
+.samples {clear:both;}
+
+span{
+	display: inline-block;
+}
+
+#credits{
+	display: inline-block;
+	width: 900px;
+	/*height: 250px;*/
+	text-align: right;
+}
+
+h2{
+	margin-bottom: 0px;
+	margin-top: 25px;
+}
+
+h3{
+	color: #1be836;
+	margin-top: 8px;
+}
+
+div{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left: 10px;
+	font-size: 18px;
+}
+
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:4; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:4; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:4; } }
+.fade-in {
+    opacity:0;
+    -webkit-animation:fadeIn ease-in 1;
+    -moz-animation:fadeIn ease-in 1;
+    animation:fadeIn ease-in 1;
+
+    -webkit-animation-fill-mode:forwards; 
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:180s;
+    -moz-animation-duration:180s;
+    animation-duration:180s;
+}

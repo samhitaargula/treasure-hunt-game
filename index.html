@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>TreasureHunter</title>
+	<link rel="stylesheet" href="index.css">
+	<script src="js/phaser.min.js"> </script>
+	
+</head>
+<body>	
+<script type="text/javascript">
+	var game = new Phaser.Game(640,640,Phaser.AUTO,'',{preload: preload, create: create , update: update});
+
+    var player;
+    var cursors;
+    var static;
+    var music;
+    var credits;
+
+    function preload()
+    {
+    	game.load.image('background', 'assets/background.png');
+    	game.load.spritesheet('dude', 'assets/dude.png',32,48);
+    	game.load.image('treasure', 'assets/treasure.png');
+        game.load.image('ring', 'assets/ring.png');
+        game.load.audio('bgm', 'assets/audio/bgm.mp3');
+    	game.load.video('credits','assets/credits.mp4');
+
+    }
+
+    function create()
+    {
+
+    	// game.physics.startSystem(Phaser.Physics.ARCADE);
+    	game.physics.startSystem(Phaser.Physics.P2JS);
+    	// game.physics.arcade.checkCollision = true;
+
+    	game.add.sprite(0,0, 'background');
+
+    	music = game.add.audio('bgm');
+   	    music.play();
+
+    	// player
+    	player = game.add.sprite(0,0,'dude',5);
+    	// game.physics.arcade.enable(player);
+    	
+    	// game.physics.p2.enable(player);
+
+    	goal = game.add.sprite(Math.random()*640,Math.random()*640, 'treasure');
+
+        goal1 = game.add.sprite(Math.random()*640,Math.random()*640, 'ring');
+
+        //goal = game.add.sprite(Math.random()*640,Math.random()*640, 'treasure');
+
+        //goal = game.add.sprite(Math.random()*640,Math.random()*640, 'treasure');
+
+        //goal = game.add.sprite(Math.random()*640,Math.random()*640, 'treasure');
+
+    	goal.scale.setTo(1.2);
+        goal1.scale.setTo(1.2);
+    	// game.physics.arcade.enable(goal);
+
+  	    game.physics.p2.enable([player,goal], false);
+        game.physics.p2.enable([player,goal1], false);
+  	    // game.physics.p2.enable(goal);
+
+  	    goal.body.static = true;
+        goal1.body.static = true;
+
+
+    	player.animations.add('left',[0,1,2,3],10,true);
+    	player.animations.add('right',[5,6,7,8],10,true);
+    	
+    	cursors = game.input.keyboard.createCursorKeys();
+
+    	goal.body.onBeginContact.add(collideHandler, this);
+        goal1.body.onBeginContact.add(collideHandler, this);
+    }
+
+
+    function collideHandler(body, bodyB, shapeA, shapeB, equation)
+    {
+    	// console.log("Yay! You've won!");
+    	// game.music.kill();
+    	alert("Yay! You found my treasure!");
+    	game.world.removeAll();
+    }
+
+
+
+    function update()
+    {
+    	player.body.velocity.x = 0;
+    	player.body.velocity.y = 0;
+
+    	if(cursors.left.isDown)
+    	{
+    	  player.body.velocity.x = -400;
+    	  player.animations.play('left');
+    	}
+    	else if(cursors.right.isDown)
+    	{
+    	  player.body.velocity.x = 400;
+    	  player.animations.play('right');
+    	}
+    	else if(cursors.up.isDown)
+    	{
+    	  player.body.velocity.y = -400;
+    	  player.animations.play('up');
+    	}
+    	else if(cursors.down.isDown)
+    	{
+    	  player.body.velocity.y = 400;
+    	  player.animations.play('down');
+    	}
+    	else {
+    	  player.animations.stop();
+    	  player.frame = 4;
+    	}
+
+    	// Checks for treasure and calls goal funcn
+    	// game.physics.arcade.collide(player, goal, gameOver, null, this);
+    	// game.physics.p2.overlap(this.player, this.goal, collideHandler, null, this);
+
+    	// treasure collision
+    	 // if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.goal.getBounds())) {
+    	 //    this.gameOver();
+    	 //  }
+
+    	  // end the game
+    	  // game.gameOver = function() {
+    	   
+    	  //     // restart the scene
+    	  //     console.log("done");
+    	  //     this.scene.restart();
+    	  // }
+    }
+
+
+
+</script>
+
+<span><img src="assets/title.png" height="250" width="350"></span>
+<span id="credits">
+	<img src="assets/logo.png" height="150" width="220">
+	<h2>A product by</h2>
+	<h3>Group A19</h3>
+	<br>
+</span>
+<br><br>
+
+<div>
+	Hi! My name is Bucky. I am quite forgetful. I seem to have lost something, but I can't remember what. Can you help me find it?<br>
+	What can you see in the map below that could possibly belong to me?
+</div>
+
+<div class="fade-in">
+	Hint: Are you getting cold feet? Don't lose hope! I think I lost something I wear on my body. It's strange I know.
+</div>
+
+</body>
+</html>
